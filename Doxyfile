@@ -1,0 +1,18 @@
+# Doxyfile for Card Game Project
+
+PROJECT_NAME           = "Card Game"
+PROJECT_NUMBER         = "Assignment 2"
+PROJECT_BRIEF          = "A two-player card game implementation in C"
+OUTPUT_DIRECTORY       = ./Documentation
+INPUT                  = ./CardGame
+FILE_PATTERNS          = *.c *.h
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = html
+HAVE_DOT               = NO
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
