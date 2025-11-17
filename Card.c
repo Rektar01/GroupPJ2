@@ -7,6 +7,8 @@
  * This file contains the implementation of functions for the Card data type.
  */
 //Eduard
+//Pierce
+
 #include <stdio.h>
 #include "Card.h"
 
