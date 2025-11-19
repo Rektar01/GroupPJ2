@@ -2,10 +2,10 @@
  * @file Card.h
  * @brief Header file for Card data type
  * @author Assignment 2 Group
- * @date 2025-11-17
+ * @date 19.11.2025
  *
  * This file contains the definition of the Card data type, including
- * enumeration types for Suit and Rank, and the Card structure itself.
+ * enums types for Suit and Rank, and the Card structure itself.
  * The Card data type represents a single playing card from a standard
  * 52-card deck.
  */
@@ -14,7 +14,7 @@
 #define CARD_H
 
 /**
- * @brief Enumeration for card suits
+ * @brief Enums for card suits
  *
  * Represents the four suits in a standard deck of playing cards.
  */
@@ -26,7 +26,7 @@ typedef enum {
 } Suit;
 
 /**
- * @brief Enumeration for card ranks
+ * @brief Enums for card ranks
  *
  * Represents the thirteen ranks in a standard deck of playing cards,
  * from Two (lowest) to Ace (highest).
