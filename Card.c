@@ -2,12 +2,10 @@
  * @file Card.c
  * @brief Implementation of Card data type functions
  * @author Assignment 2 Group
- * @date 2025-11-17
+ * @date 19.11.2025
  *
- * This file contains the implementation of functions for the Card data type.
+ * This file contains the implementation of functions for the Card data type
  */
-//Eduard
-//Pierce
 
 #include <stdio.h>
 #include "Card.h"
