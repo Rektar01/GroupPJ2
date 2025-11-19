@@ -10,6 +10,16 @@
 #include <stdio.h>
 #include "Card.h"
 
+
+/**
+ *PSEUDOCODE: getSuitString
+ * Input:suit
+ * Switch for suit:
+ *  Check each suit using switch statement
+ *  Return a string with the matching suit
+ * If no suit matches, return "Unknown"
+ * Output: string showing the suit
+ */
 const char* getSuitString(Suit suit)
 {
 	switch (suit) {
@@ -26,6 +36,15 @@ const char* getSuitString(Suit suit)
 	}
 }
 
+/**
+ *PSEUDOCODE: getSuitRank
+ * Input:rank
+ * Switch for rank:
+ *  Check each rank using switch statement
+ *  Return a string with the matching rank
+ * If no rank matches, return "Unknown"
+ * Output: string showing the rank
+ */
 const char* getRankString(Rank rank)
 {
 	switch (rank) {
@@ -60,11 +79,24 @@ const char* getRankString(Rank rank)
 	}
 }
 
+/**
+ *PSEUDOCODE: printCard
+ * Input: card (struct with suit and rank)
+ * Call getRankString and getSuitString
+ * Print "(suit)-(rank)"
+ */
 void printCard(Card card)
 {
 	printf("%s-%s", getRankString(card.rank), getSuitString(card.suit));
 }
 
+/**
+ * PSEUDOCODE: cardsMatch
+ * Input: card1, card2
+ * Check if card1.suit == card2.suit, return true
+ * else if card1.rank == card2.rank, return true
+ * else return false
+ */
 int cardsMatch(Card card1, Card card2)
 {
 	return (card1.suit == card2.suit || card1.rank == card2.rank);
