@@ -20,6 +20,7 @@
  * If no suit matches, return "Unknown"
  * Output: string showing the suit
  */
+
 const char* getSuitString(Suit suit)
 {
 	switch (suit) {
@@ -36,6 +37,7 @@ const char* getSuitString(Suit suit)
 	}
 }
 
+
 /**
  *PSEUDOCODE: getSuitRank
  * Input:rank
@@ -45,6 +47,7 @@ const char* getSuitString(Suit suit)
  * If no rank matches, return "Unknown"
  * Output: string showing the rank
  */
+
 const char* getRankString(Rank rank)
 {
 	switch (rank) {
@@ -79,16 +82,19 @@ const char* getRankString(Rank rank)
 	}
 }
 
+
 /**
  *PSEUDOCODE: printCard
  * Input: card (struct with suit and rank)
  * Call getRankString and getSuitString
  * Print "(suit)-(rank)"
  */
+
 void printCard(Card card)
 {
 	printf("%s-%s", getRankString(card.rank), getSuitString(card.suit));
 }
+
 
 /**
  * PSEUDOCODE: cardsMatch
@@ -97,6 +103,7 @@ void printCard(Card card)
  * else if card1.rank == card2.rank, return true
  * else return false
  */
+
 int cardsMatch(Card card1, Card card2)
 {
 	return (card1.suit == card2.suit || card1.rank == card2.rank);
