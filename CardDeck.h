@@ -2,7 +2,7 @@
  * @file CardDeck.h
  * @brief Header file for CardDeck 
  * @author assignment  group 2
- * @date 2025-11-17
+ * @date 19.11.2025
  *
  * his file contains the  definitions of the fuctions used in the card deck game our team have developed. The game uses
  * dynamic memory allocation to support any number of cards.
