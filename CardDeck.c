@@ -2,7 +2,7 @@
  * @file CardDeck.c
  * @brief Implementation of CardDeck data type functions
  * @author Assignment 2 Group
- * @date 2025-11-17
+ * @date 20.11.2025
  *
  * This file contains the implementation of all functions for the CardDeck
  * data type, including creation, destruction, manipulation, shuffling,
