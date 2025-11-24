@@ -18,7 +18,7 @@
 #include <time.h>
 #include "Card.h"
 #include "CardDeck.h"
-
+#include "main.h"
 /**
  * @brief Deal cards to players from the hidden deck
  *
@@ -26,8 +26,8 @@
  * taking cards from the top of the hidden deck.
  *
  * @param hiddenDeck Pointer to the hidden deck
- * @param player1 Pointer to player 1's deck
- * @param player2 Pointer to player 2's deck
+ * @param player1 Pointer to player 1 deck
+ * @param player2 Pointer to player 2 deck
  * @param cardsPerPlayer Number of cards to deal to each player
  */
 void dealCards(CardDeck* hiddenDeck, CardDeck* player1, CardDeck* player2, int cardsPerPlayer)
@@ -146,7 +146,7 @@ int main(void)
 	
 	printf("Welcome to the Card Game!\n");
 	printf("Enter the number of packs of cards to use: ");
-	scanf("%d", &numPacks);
+	scanf_s("%d", &numPacks);
 	
 	if (numPacks < 1) {
 		printf("Invalid number of packs. Using 1 pack.\n");
