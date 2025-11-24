@@ -60,10 +60,26 @@ const char* getRankString(Rank rank)
 	}
 }
 
+
 void printCard(Card card)
 {
-	printf("%s-%s", getRankString(card.rank), getSuitString(card.suit));
+	// Arrays for rank and suit symbols
+	const char* ranks[] = { "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "10", "J ", "Q ", "K ", "A " };
+	const char* suits[] = { " club  ", " spade ", " heart ", "diamond" };
+
+	const char* rankStr = ranks[card.rank];
+	const char* suitSymbol = suits[card.suit];
+
+	// Print ASCII card
+	printf(" _______ \n");
+	printf("|%s     |\n", rankStr);
+	printf("|       | \n");
+	printf("|%s|\n", suitSymbol);
+	printf("|       | \n");
+	printf("|     %s|\n", rankStr);
+	printf(" ------- \n");
 }
+
 
 int cardsMatch(Card card1, Card card2)
 {
