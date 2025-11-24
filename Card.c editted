@@ -11,14 +11,14 @@
 #include "Card.h"
 
 
-/**
- *PSEUDOCODE: getSuitString
- * Input:suit
- * Switch for suit:
- *  Check each suit using switch statement
- *  Return a string with the matching suit
- * If no suit matches, return "Unknown"
- * Output: string showing the suit
+/*
+  PSEUDOCODE: getSuitString
+ 1) Input:suit
+ 2) Switch for suit:
+ 3) Check each suit using switch statement
+ 4) Return a string with the matching suit
+ 5) If no suit matches, return "Unknown"
+ 6) Output: string showing the suit
  */
 
 const char* getSuitString(Suit suit)
@@ -38,14 +38,14 @@ const char* getSuitString(Suit suit)
 }
 
 
-/**
- *PSEUDOCODE: getSuitRank
- * Input:rank
- * Switch for rank:
- *  Check each rank using switch statement
- *  Return a string with the matching rank
- * If no rank matches, return "Unknown"
- * Output: string showing the rank
+/*
+ PSEUDOCODE: getSuitRank
+ 1) Input:rank
+ 2) Switch for rank:
+ 3) Check each rank using switch statement
+ 4) Return a string with the matching rank
+ 5) If no rank matches, return "Unknown"
+ 6) Output: string showing the rank
  */
 
 const char* getRankString(Rank rank)
@@ -83,11 +83,11 @@ const char* getRankString(Rank rank)
 }
 
 
-/**
- *PSEUDOCODE: printCard
- * Input: card (struct with suit and rank)
- * Call getRankString and getSuitString
- * Print "(suit)-(rank)"
+/*
+ PSEUDOCODE: printCard
+ 1) Input: card (struct with suit and rank)
+ 2) Call getRankString and getSuitString
+ 3) Print "(suit)-(rank)"
  */
 
 void printCard(Card card)
@@ -96,12 +96,12 @@ void printCard(Card card)
 }
 
 
-/**
- * PSEUDOCODE: cardsMatch
- * Input: card1, card2
- * Check if card1.suit == card2.suit, return true
- * else if card1.rank == card2.rank, return true
- * else return false
+/*
+  PSEUDOCODE: cardsMatch
+ 1) Input: card1, card2
+ 2) Check if card1.suit == card2.suit, return true
+ 3) else if card1.rank == card2.rank, return true
+ 4) else return false
  */
 
 int cardsMatch(Card card1, Card card2)
