@@ -2,11 +2,11 @@
  * @file CardDeck.c
  * @brief Implementation of CardDeck data type functions
  * @author Assignment 2 Group
- * @date 20.11.2025
+ * @date 2025-11-24
  *
  * This file contains the implementation of all functions for the CardDeck
- * data type, including creation, destruction, manipulation, shuffling,
- * and sorting operations.
+ * data type, including creation, destruction, adding and removing cards, 
+ * shuffling, and sorting operations.
  */
 
 #include <stdio.h>
@@ -22,13 +22,13 @@ CardDeck* createCardDeck(void)
 	
 	deck = (CardDeck*)malloc(sizeof(CardDeck));
 	if (deck == NULL) {
-		printf("Error: Failed to allocate deck\n");
+		fprintf(stderr, "Error: Memory allocation failed\n");
 		exit(1);
 	}
 	
 	deck->cards = (Card*)malloc(INITIAL_CAPACITY * sizeof(Card));
 	if (deck->cards == NULL) {
-		printf("Error: Failed to allocate cards\n");
+		fprintf(stderr, "Error: Memory allocation failed\n");
 		free(deck);
 		exit(1);
 	}
@@ -54,15 +54,16 @@ PSEUDOCODE:
 CardDeck* createCardDeckWithPacks(int numPacks)
 {
 	CardDeck* deck;
+	int i, s, r;
 	
 	deck = createCardDeck();
 	
-	for (int i = 0; i < numPacks; i++) {
-		for (int j = CLUB; j <= DIAMOND; j++) {
-			for (int k = TWO; k <= ACE; k++) {
+	for (i = 0; i < numPacks; i++) {
+		for (s = CLUB; s <= DIAMOND; s++) {
+			for (r = TWO; r <= ACE; r++) {
 				Card card;
-				card.suit = (Suit)j;
-				card.rank = (Rank)k;
+				card.suit = (Suit)s;
+				card.rank = (Rank)r;
 				addCardToTop(deck, card);
 			}
 		}
@@ -98,7 +99,7 @@ PSEUDOCODE:
 
 void addCardToTop(CardDeck* deck, Card card)
 {
-	if (deck->size = deck->capacity) {
+	if (deck->size >= deck->capacity) {
 		int newCapacity;
 		Card* newCards;
 		
@@ -106,7 +107,7 @@ void addCardToTop(CardDeck* deck, Card card)
 		newCards = (Card*)realloc(deck->cards, newCapacity * sizeof(Card));
 		
 		if (newCards == NULL) {
-			printf("Error: Failed to allocate cards\n");
+			fprintf(stderr, "Error: Memory reallocation failed\n");
 			exit(1);
 		}
 		
@@ -134,7 +135,7 @@ Card removeCardFromTop(CardDeck* deck)
 	Card card;
 	
 	if (deck->size == 0) {
-		printf("Error: Can't remove card from empty deck\n");
+		fprintf(stderr, "Error: Cannot remove card from empty deck\n");
 		exit(1);
 	}
 	
@@ -157,15 +158,16 @@ PSEUDOCODE:
 Card removeCardAtIndex(CardDeck* deck, int index)
 {
 	Card card;
+	int i;
 	
 	if (index < 0 || index >= deck->size) {
-		printf("Error: Outside range\n");
+		fprintf(stderr, "Error: Invalid index\n");
 		exit(1);
 	}
 	
 	card = deck->cards[index];
 	
-	for (int i = index; i < deck->size - 1; i++) {
+	for (i = index; i < deck->size - 1; i++) {
 		deck->cards[i] = deck->cards[i + 1];
 	}
 	
@@ -222,18 +224,23 @@ PSEUDOCODE:
 void shuffleDeck(CardDeck* deck)
 {
 	CardDeck* tempDeck;
+	int n;
 	
 	if (deck->size <= 1) {
 		return;
 	}
 	
 	tempDeck = createCardDeck();
-	int n = deck->size;
+	n = deck->size;
 	
-	for (int i = 0; i < n; i++) {
-    	int r = rand() % (deck->size - i);
-    	Card card = removeCardAtIndex(deck, r);
-    	addCardToTop(tempDeck, card);
+	while (n > 0) {
+		int r;
+		Card card;
+		
+		r = rand() % n;
+		card = removeCardAtIndex(deck, r);
+		addCardToTop(tempDeck, card);
+		n--;
 	}
 	
 	while (tempDeck->size > 0) {
@@ -247,21 +254,21 @@ void shuffleDeck(CardDeck* deck)
 /*
 PSEUDOCODE:
 1) Create an empty temporary deck
-2) Check the size of the passed deck
+2) Check the size of the original deck
 	3) If it is of size 1 or less, it can't be shuffled and is returned as is
 4) Store the initial size of the passed deck
-4) Do a for loop for the initial size of the passed deck
-	5) Takes a random card from the passed deck and adds it to the top of the temp deck
+4) Do a while loop for as long as their are still cards in the original deck
+	5) Takes a random card from the original deck and adds it to the top of the temp deck
 6) Do a second loop while there are still cards in the temp deck
-	7) Return the now randomised order from the temp deck to the passed deck
+	7) Return the now randomised order from the temp deck to the original deck
 8) Destroy the temporary deck
 */
 
 void sortDeck(CardDeck* deck)
 {
-	int j;
+	int i, j;
 	
-	for (int i = 1; i < deck->size; i++) {
+	for (i = 1; i < deck->size; i++) {
 		Card key;
 		
 		key = deck->cards[i];
@@ -292,10 +299,12 @@ PSEUDOCODE:
 
 void printDeck(CardDeck* deck)
 {
-	for (int i = 0; i < deck->size; i++) {
+	int i;
+	
+	for (i = 0; i < deck->size; i++) {
 		printCard(deck->cards[i]);
 		if (i < deck->size - 1) {
-			printf(", ");
+			printf(" ");
 		}
 	}
 }
@@ -309,7 +318,9 @@ PSEUDOCODE:
 
 int findMatchingCard(CardDeck* deck, Card card)
 {
-	for (int i = 0; i < deck->size; i++) {
+	int i;
+	
+	for (i = 0; i < deck->size; i++) {
 		if (cardsMatch(deck->cards[i], card)) {
 			return i;
 		}
@@ -327,7 +338,9 @@ PSEUDOCODE:
 
 void transferCards(CardDeck* source, CardDeck* dest)
 {
-	for (int i = 0; i < source->size; i++) {
+	int i;
+	
+	for (i = 0; i < source->size; i++) {
 		addCardToTop(dest, source->cards[i]);
 	}
 	
