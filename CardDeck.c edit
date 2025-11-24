@@ -1,1 +1,119 @@
+	
+	card = deck->cards[index];
+	
+	for (i = index; i < deck->size - 1; i++) {
+		deck->cards[i] = deck->cards[i + 1];
+	}
+	
+	deck->size--;
+	
+	return card;
+}
 
+Card peekTopCard(CardDeck* deck)
+{
+	if (deck->size == 0) {
+		fprintf(stderr, "Error: Cannot peek at empty deck\n");
+		exit(1);
+	}
+	
+	return deck->cards[deck->size - 1];
+}
+
+int isDeckEmpty(CardDeck* deck)
+{
+	return (deck->size == 0);
+}
+
+int getDeckSize(CardDeck* deck)
+{
+	return deck->size;
+}
+
+void shuffleDeck(CardDeck* deck)
+{
+	CardDeck* tempDeck;
+	int n;
+	
+	if (deck->size <= 1) {
+		return;
+	}
+	
+	tempDeck = createCardDeck();
+	n = deck->size;
+	
+	while (n > 0) {
+		int r;
+		Card card;
+		
+		r = rand() % n;
+		card = removeCardAtIndex(deck, r);
+		addCardToTop(tempDeck, card);
+		n--;
+	}
+	
+	while (tempDeck->size > 0) {
+		Card card;
+		card = removeCardFromTop(tempDeck);
+		addCardToTop(deck, card);
+	}
+	
+	destroyCardDeck(tempDeck);
+}
+
+void sortDeck(CardDeck* deck)
+{
+	int i, j;
+	
+	for (i = 1; i < deck->size; i++) {
+		Card key;
+		
+		key = deck->cards[i];
+		j = i - 1;
+		
+		while (j >= 0 && 
+		       (deck->cards[j].suit > key.suit || 
+		        (deck->cards[j].suit == key.suit && deck->cards[j].rank > key.rank))) {
+			deck->cards[j + 1] = deck->cards[j];
+			j--;
+		}
+		
+		deck->cards[j + 1] = key;
+	}
+}
+
+void printDeck(CardDeck* deck)
+{
+	int i;
+	
+	for (i = 0; i < deck->size; i++) {
+		printCard(deck->cards[i]);
+		if (i < deck->size - 1) {
+			printf(" ");
+		}
+	}
+}
+
+int findMatchingCard(CardDeck* deck, Card card)
+{
+	int i;
+	
+	for (i = 0; i < deck->size; i++) {
+		if (cardsMatch(deck->cards[i], card)) {
+			return i;
+		}
+	}
+	
+	return -1;
+}
+
+void transferCards(CardDeck* source, CardDeck* dest)
+{
+	int i;
+	
+	for (i = 0; i < source->size; i++) {
+		addCardToTop(dest, source->cards[i]);
+	}
+	
+	source->size = 0;
+}
