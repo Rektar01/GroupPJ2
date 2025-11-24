@@ -70,7 +70,7 @@ void playTurn(CardDeck* player, CardDeck* hiddenDeck, CardDeck* playedDeck, int 
 		playedCard = removeCardAtIndex(player, matchIndex);
 		addCardToTop(playedDeck, playedCard);
 		
-		printf("Player %d played card ", playerNum);
+		printf("Player %d played card \n", playerNum);
 		printCard(playedCard);
 		printf("\n");
 	} else {
@@ -84,14 +84,14 @@ void playTurn(CardDeck* player, CardDeck* hiddenDeck, CardDeck* playedDeck, int 
 		pickedCard = removeCardFromTop(hiddenDeck);
 		addCardToTop(player, pickedCard);
 		
-		printf("Player %d picks card ", playerNum);
+		printf("Player %d picks card \n", playerNum);
 		printCard(pickedCard);
-		printf(" from the hidden deck\n");
+		printf(" from the hidden deck\n\n");
 		
 		sortDeck(player);
 	}
 	
-	printf("Player %d cards: ", playerNum);
+	printf("Player %d cards: \n", playerNum);
 	printDeck(player);
 	printf("\n\n");
 }
@@ -167,18 +167,18 @@ int main(void)
 	sortDeck(player1);
 	sortDeck(player2);
 	
-	printf("Player 1 cards: ");
+	printf("Player 1 cards: \n");
 	printDeck(player1);
 	printf("\n");
 	
-	printf("Player 2 cards: ");
+	printf("Player 2 cards: \n");
 	printDeck(player2);
 	printf("\n\n");
 	
 	firstCard = removeCardFromTop(hiddenDeck);
 	addCardToTop(playedDeck, firstCard);
 	
-	printf("First card: ");
+	printf("\nFirst card: ");
 	printCard(firstCard);
 	printf("\n\n");
 	
