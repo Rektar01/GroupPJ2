@@ -2,7 +2,7 @@
  * @file main.c
  * @brief Main program for the card game
  * @author Assignment 2 Group
- * @date 2025-11-17
+ * @date 21.11.2025
  *
  * This file contains the main game logic for a two-player card game.
  * The game follows these rules:
