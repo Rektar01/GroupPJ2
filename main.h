@@ -2,7 +2,7 @@
  * @file main.h
  * @brief header file for main program functions
  * @author Assignment 2 Group
- * @date 2025-11-17
+ * @date 20.11.2025
  *
  * This header file containing function declarations for the card game
  * main program logic.
@@ -50,5 +50,6 @@ void playTurn(CardDeck* player, CardDeck* hiddenDeck, CardDeck* playedDeck, int 
  * @param playedDeck Pointer to the played deck
  */
 void refillHiddenDeck(CardDeck* hiddenDeck, CardDeck* playedDeck);
+
 
 #endif /* MAIN_H */
