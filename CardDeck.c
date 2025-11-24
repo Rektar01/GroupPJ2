@@ -61,8 +61,8 @@ CardDeck* createCardDeckWithPacks(int numPacks)
 		for (int j = CLUB; j <= DIAMOND; j++) {
 			for (int k = TWO; k <= ACE; k++) {
 				Card card;
-				card.suit = (Suit)s;
-				card.rank = (Rank)r;
+				card.suit = (Suit)j;
+				card.rank = (Rank)k;
 				addCardToTop(deck, card);
 			}
 		}
