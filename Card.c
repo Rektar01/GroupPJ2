@@ -81,23 +81,39 @@ const char* getRankString(Rank rank)
 		return "Unknown";
 	}
 }
+/*
+  PSEUDOCODE: printCard
+ 1) Input: Card, card
+ 2) Check rank
+ 3) Check suit
+ 4) Format and output result
+ 5) Example : card = 5-heart
+    returns card layout
+	 -----------
+	 |5        |
+     |         |
+	 |  heart  |
+     |         |
+	 |        5|
+	 -----------
+ */ 
 
 void printCard(Card card)
 {
-	// Arrays for rank and suit symbols
-	const char* ranks[] = { "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "10", "J ", "Q ", "K ", "A " };
-	const char* suits[] = { " club  ", " spade ", " heart ", "diamond" };
+	
+	const char* ranks[] = { "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "10", "J ", "Q ", "K ", "A " }; // Arrays for rank symbols
+	const char* suits[] = { " club  ", " spade ", " heart ", "diamond" }; // Arrays for  suit symbols
 
 	const char* rankStr = ranks[card.rank];
 	const char* suitSymbol = suits[card.suit];
 
 	// Print ASCII card
 	printf(" _______ \n");
-	printf("|%s     |\n", rankStr);
+	printf("|%s     |\n", rankStr); //puts rank in top corner
 	printf("|       | \n");
-	printf("|%s|\n", suitSymbol);
+	printf("|%s|\n", suitSymbol); // suit in the centre
 	printf("|       | \n");
-	printf("|     %s|\n", rankStr);
+	printf("|     %s|\n", rankStr); // puts rank in bottom corner
 	printf(" ------- \n");
 }
 
