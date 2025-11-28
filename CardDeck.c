@@ -20,13 +20,13 @@ CardDeck* createCardDeck(void)
 {
 	CardDeck* deck;
 	
-	deck = (CardDeck*)malloc(sizeof(CardDeck));
+	deck = (CardDeck*)malloc(sizeof(CardDeck)); //assigns memory for the cardDeck components
 	if (deck == NULL) {
 		fprintf(stderr, "Error: Memory allocation failed\n");
 		exit(1);
 	}
 	
-	deck->cards = (Card*)malloc(INITIAL_CAPACITY * sizeof(Card));
+	deck->cards = (Card*)malloc(INITIAL_CAPACITY * sizeof(Card)); //assigns memory for the card array
 	if (deck->cards == NULL) {
 		fprintf(stderr, "Error: Memory allocation failed\n");
 		free(deck);
@@ -104,7 +104,7 @@ void addCardToTop(CardDeck* deck, Card card)
 		Card* newCards;
 		
 		newCapacity = deck->capacity * 2;
-		newCards = (Card*)realloc(deck->cards, newCapacity * sizeof(Card));
+		newCards = (Card*)realloc(deck->cards, newCapacity * sizeof(Card)); //temporary card array to hold existing cards, resizing old array with realloc
 		
 		if (newCards == NULL) {
 			fprintf(stderr, "Error: Memory reallocation failed\n");
@@ -140,7 +140,7 @@ Card removeCardFromTop(CardDeck* deck)
 	}
 	
 	card = deck->cards[deck->size - 1];
-	deck->size--;
+	deck->size--; //deletes card, only way to access the card again is to increase size, which only happens when new card overwrites it
 	
 	return card;
 }
@@ -168,10 +168,10 @@ Card removeCardAtIndex(CardDeck* deck, int index)
 	card = deck->cards[index];
 	
 	for (i = index; i < deck->size - 1; i++) {
-		deck->cards[i] = deck->cards[i + 1];
+		deck->cards[i] = deck->cards[i + 1]; //shifts cards after over by one
 	}
 	
-	deck->size--;
+	deck->size--; //deletes final card, which was now a duplicate of the second last card
 	
 	return card;
 }
@@ -193,7 +193,7 @@ Card peekTopCard(CardDeck* deck)
 		exit(1);
 	}
 	
-	return deck->cards[deck->size - 1];
+	return deck->cards[deck->size - 1]; //size - 1 is the top card on deck
 }
 /*
 PSEUDOCODE:
@@ -227,7 +227,7 @@ void shuffleDeck(CardDeck* deck)
 	int n;
 	
 	if (deck->size <= 1) {
-		return;
+		return; //returns deck as is if 1 or less cards, as it can't be shuffled
 	}
 	
 	tempDeck = createCardDeck();
@@ -272,7 +272,7 @@ void sortDeck(CardDeck* deck)
 		Card key;
 		
 		key = deck->cards[i];
-		j = i - 1;
+		j = i - 1; //set to card before key card to check all underneath card
 		
 		while (j >= 0 && 
 		       (deck->cards[j].suit > key.suit || 
@@ -304,7 +304,7 @@ void printDeck(CardDeck* deck)
 	for (i = 0; i < deck->size; i++) {
 		printCard(deck->cards[i]);
 		if (i < deck->size - 1) {
-			printf(" ");
+			printf(" "); //doesn't print space for final card for formatting
 		}
 	}
 }
